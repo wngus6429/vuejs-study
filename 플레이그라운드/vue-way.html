@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      let div = document.querySelector("#app");
+      let viewModel = {};
+      // Object.defineProperty(대상 객체, 객체의 속성, {
+      //정의할내용
+      //}); //객체의 동작을 재정의
+
+      (function () {
+        function init() {
+          Object.defineProperty(viewModel, "str", {
+            // 속성의 접근했을때의 동작을 정의
+            get: function () {
+              console.log("접근");
+            },
+            // 속성의 값을 할당했을 때의 동작을 정의
+            set: function (newValue) {
+              console.log("할당", newValue);
+              render함수(newValue);
+            },
+          });
+        }
+        function render함수(value) {
+          div.innerHTML = value;
+        }
+        init();
+      })();
+    </script>
+  </body>
+</html>
