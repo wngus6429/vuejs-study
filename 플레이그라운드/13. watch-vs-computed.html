@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{ num }}</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          num: 10,
+        },
+        //캐싱해서 빠름, 공식적으로도 computed가 좋다함, 내부튜닝 등
+        //단순 텍스트나, 값에 대한 계산, 연산
+        computed: {
+          doubleNum: function () {
+            return this.num * 2;
+          },
+        },
+        //watch는 무거운로직, 매번 실행되기 부담스러운거, 데이터요청 등
+        watch: {
+          //두번쨰는 이전값
+          //watch는 데이터 변화를 보고 있어서 새로운값과 예전값 둘다 가능
+          num: function (newValue, oldValue) {
+            this.fetchUserByNumber(newValue);
+          },
+        },
+        methods: {
+          fetchUserByNumber: function (num) {
+            console.log(num);
+            //axios.get(num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
