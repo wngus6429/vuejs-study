@@ -44,7 +44,6 @@ export default {
         })
         .catch(function(error) {
           console.log(error);
-          console.log("문제있음");
         }); //http통신 이용, 데이터 보내고 받기 라이브러리
     },
     // submitForm(e) {
