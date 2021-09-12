@@ -17,10 +17,14 @@ export default {
   },
   methods: {
     addTodo: function() {
-      console.log(this.newTodoItem);
-      //저장하는 로직
-      localStorage.setItem(this.newTodoItem, this.newTodoItem); //mdn 검색, key와 value
-      this.clearInput();
+      //newTodoItem가
+      if (this.newTodoItem !== "") {
+        let obj = { compledted: false, item: this.newTodoItem };
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        //객체를 string으로 변환해줌
+        //mdn 검색, key와 value
+        this.clearInput();
+      }
     },
     clearInput: function() {
       this.newTodoItem = "";
