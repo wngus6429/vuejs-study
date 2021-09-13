@@ -17,9 +17,12 @@ export default {
   },
   methods: {
     addTodo: function() {
+      //newTodoItem가
       if (this.newTodoItem !== "") {
-        // this.$emit('이벤트이름', 인자1, 인자2, ...)
-        this.$emit("addTodoItem", this.newTodoItem); //이게 App.vue 4번째로 가지
+        let obj = { compledted: false, item: this.newTodoItem };
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        //객체를 string으로 변환해줌
+        //mdn 검색, key와 value
         this.clearInput();
       }
     },

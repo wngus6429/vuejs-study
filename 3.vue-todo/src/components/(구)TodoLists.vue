@@ -2,7 +2,7 @@
   ><div>
     <ul>
       <!-- v-for는 인덱스 활용가능 -->
-      <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
+      <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
         <!-- compledted가 false면 v-bind:class="{ checkBtnCompleted: todoItem.compledted }" 부분이 사라짐 -->
         <i class="checkBtn fas fa-check" v-bind:class="{ checkBtnCompleted: todoItem.compledted }" v-on:click="toggleComplete(todoItem, index)"></i>
         <!-- v-bind의 클래스, 동적인 값을 부여, compledted가 true면 체크 회색, 가운데선 나타나게끔 -->
@@ -15,7 +15,9 @@
 
 <script>
 export default {
-  props: ["propsdata"],
+  data: function() {
+    return { todoItems: [] };
+  },
   //뷰 라이프사이클. create 인스턴스가 호출되자 마자 실행, 라이프사이클 훅
   methods: {
     removeTodo: function(todoItem, index) {
@@ -33,6 +35,16 @@ export default {
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       //console.log(todoItem, index);
     },
+  },
+  created: function() {
+    if (localStorage.length > 0) {
+      for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+          //this.todoItems.push(localStorage.key(i)); ,  JSON.parse는 string 을 객체로 바꿔준다.
+        }
+      }
+    }
   },
 };
 </script>
