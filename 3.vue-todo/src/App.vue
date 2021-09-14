@@ -7,7 +7,7 @@
     <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem" />
     <!-- <TodoList v-bind:내려보낼 프롭스 속성="현재 위치의 컴포넌트 데이터속성" /> -->
     <!-- removeItem이라는 이벤트가 발생하면 removeOneItem 메소드이 실행되는거지 -->
-    <TodoFooter />
+    <TodoFooter v-on:clearAll="clearAllItem" />
   </div>
 </template>
 
@@ -45,6 +45,10 @@ export default {
       localStorage.removeItem(todoItem.item);
       //아이템을 지웠다가 동일하게 세팅하고, 대신이제 바뀐거를 stringify를 해서 저장한다.
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+    },
+    clearAllItem: function() {
+      localStorage.clear();
+      this.todoItems = [];
     },
   },
   created: function() {
