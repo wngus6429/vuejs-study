@@ -7,7 +7,8 @@
     </span>
     <modal v-if="showModal" @close="showModal = false">
       <!-- you can use custom content here to overwrite default content -->
-      <h3 slot="header">custom header</h3>
+      <h3 slot="header">경고! <i class="closeModalBtn fas fa-times" @click="showModal = false"></i></h3>
+      <h4 slot="body">아몰라</h4>
     </modal>
   </div>
 </template>
@@ -29,7 +30,7 @@ export default {
         this.$emit("addTodoItem", this.newTodoItem); //이게 App.vue 4번째로 가지
         this.clearInput();
       } else {
-        <modal />;
+        this.showModal = !this.showModal; //true, false 변환
       }
     },
     clearInput: function() {
@@ -65,5 +66,8 @@ input:focus {
 .addBtn {
   color: blue;
   vertical-align: middle;
+}
+.closeModalBtn {
+  color: #42b983;
 }
 </style>
