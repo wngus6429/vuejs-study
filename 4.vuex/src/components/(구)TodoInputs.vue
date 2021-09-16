@@ -5,39 +5,31 @@
     <span class="addContainer" v-on:click="addTodo">
       <i class="fas fa-plus addBtn"></i>
     </span>
-    <modal v-if="showModal" @close="showModal = false">
-      <!-- you can use custom content here to overwrite default content -->
-      <h3 slot="header">경고! <i class="closeModalBtn fas fa-times" @click="showModal = false"></i></h3>
-      <h4 slot="body">아몰라</h4>
-    </modal>
   </div>
 </template>
 
 <script>
-import Modal from "./common/Modal.vue";
-
 export default {
-  data() {
+  data: function() {
     return {
       newTodoItem: "",
-      showModal: false,
     };
   },
   methods: {
-    addTodo() {
+    addTodo: function() {
+      //newTodoItem가
       if (this.newTodoItem !== "") {
-        // this.$emit('이벤트이름', 인자1, 인자2, ...)
-        this.$emit("addTodoItem", this.newTodoItem); //이게 App.vue 4번째로 가지
+        let obj = { compledted: false, item: this.newTodoItem };
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        //객체를 string으로 변환해줌
+        //mdn 검색, key와 value
         this.clearInput();
-      } else {
-        this.showModal = !this.showModal; //true, false 변환
       }
     },
-    clearInput() {
+    clearInput: function() {
       this.newTodoItem = "";
     },
   },
-  components: { Modal: Modal },
 };
 </script>
 
@@ -66,8 +58,5 @@ input:focus {
 .addBtn {
   color: blue;
   vertical-align: middle;
-}
-.closeModalBtn {
-  color: #42b983;
 }
 </style>
