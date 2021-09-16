@@ -1,5 +1,7 @@
 <template>
-  <header><h1>Todo it!</h1></header>
+  <header>
+    <h1>ToDO</h1>
+  </header>
 </template>
 
 <style scoped>
