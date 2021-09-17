@@ -4,11 +4,7 @@
       <!-- v-for는 인덱스 활용가능 -->
       <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow">
         <!-- compledted가 false면 v-bind:class="{ checkBtnCompleted: todoItem.compledted }" 부분이 사라짐 -->
-        <i
-          class="checkBtn fas fa-check"
-          v-bind:class="{ checkBtnCompleted: todoItem.compledted }"
-          v-on:click="toggleComplete(todoItem, index)"
-        ></i>
+        <i class="checkBtn fas fa-check" v-bind:class="{ checkBtnCompleted: todoItem.compledted }" v-on:click="toggleComplete(todoItem, index)"></i>
         <!-- v-bind의 클래스, 동적인 값을 부여, compledted가 true면 체크 회색, 가운데선 나타나게끔 -->
         <span v-bind:class="{ textCompleted: todoItem.compledted }">{{ todoItem.item }}</span>
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)"><i class="fas fa-trash-alt"></i></span>
@@ -19,23 +15,15 @@
 
 <script>
 export default {
-  props: ["propsdata"],
   //뷰 라이프사이클. create 인스턴스가 호출되자 마자 실행, 라이프사이클 훅
   methods: {
+    //this.$store.commit("addOneItem", this.newTodoItem);
     removeTodo(todoItem, index) {
-      console.log(todoItem, index);
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
-      //splice원본 변화 있음, slice는 자르고 반환하지만 원본은 변화 없음
+      //const obj = {todoItem, index} 이렇게 해서 밑에 obj 넣어도됨
+      this.$store.commit("removeOneItem", { todoItem, index });
     },
-    toggleComplete(todoItem) {
-      todoItem.compledted = !todoItem.compledted;
-      //localstorage.update 갱신 같은게 없어서 이렇게 하는거임
-      localStorage.removeItem(todoItem.item);
-      //설정 값을 바꾸고 나서, 저장을 하는데. 저장할려면 갱신인데.
-      //업데이트가 없어서 아이템을 지웠다가 동일하게 세팅하고, 대신이제 바뀐거를 stringify를 해서 저장한다.
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-      //console.log(todoItem, index);
+    toggleComplete(todoItem, index) {
+      this.$store.commit("toggleOneItem", { todoItem, index });
     },
   },
 };
