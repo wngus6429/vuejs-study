@@ -19,18 +19,18 @@ export default {
   //뷰 라이프사이클. create 인스턴스가 호출되자 마자 실행, 라이프사이클 훅
   methods: {
     removeTodo(todoItem, index) {
-      console.log(todoItem, index);
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+      this.$emit("removeItem", todoItem, index);
+      // localStorage.removeItem(todoItem);
+      // this.todoItems.splice(index, 1);
       //splice원본 변화 있음, slice는 자르고 반환하지만 원본은 변화 없음
     },
-    toggleComplete(todoItem) {
-      todoItem.compledted = !todoItem.compledted;
+    toggleComplete(todoItem, index) {
+      this.$emit("toggleItem", todoItem, index);
+      // todoItem.compledted = !todoItem.compledted;
       //localstorage.update 갱신 같은게 없어서 이렇게 하는거임
-      localStorage.removeItem(todoItem.item);
-      //설정 값을 바꾸고 나서, 저장을 하는데. 저장할려면 갱신인데.
+      // localStorage.removeItem(todoItem.item);
       //업데이트가 없어서 아이템을 지웠다가 동일하게 세팅하고, 대신이제 바뀐거를 stringify를 해서 저장한다.
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      // localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       //console.log(todoItem, index);
     },
   },
