@@ -9,3 +9,5 @@ a.num = 10;
 console.log(a);
 a.gg = "씨";
 console.log(a);
+
+console.log("checkout");
