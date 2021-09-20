@@ -1,8 +1,6 @@
 <template>
   <div class="clearAllContainer">
-    <span class="clearAllBtn" v-on:click="clearTodo">
-      Clear All
-    </span>
+    <span class="clearAllBtn" v-on:click="clearTodo"> Clear All </span>
   </div>
 </template>
 
@@ -13,7 +11,6 @@ export default {
     ...mapMutations({
       clearTodo: "clearAllItem",
     }),
-
     //   clearTodo: function() {
     //     this.$store.commit("clearAllItem");
     //   },
