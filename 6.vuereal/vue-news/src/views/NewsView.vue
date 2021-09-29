@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { fetchNewsList } from "../api/index";
 export default {
   components: {},
   data() {
@@ -14,12 +14,12 @@ export default {
     };
   },
   created() {
-    //axios는 프로미스 기반이다.
     //화살표 안쓰면 let vm = this; 를 해야함
-    axios
-      .get("https://api.hnpwa.com/v0/news/1.json")
+    fetchNewsList()
       .then((response) => (this.users = response.data))
-      .catch();
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
