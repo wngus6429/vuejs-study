@@ -1,22 +1,28 @@
 <template>
-  <div>
-    <div v-for="user in users">{{ user.title }}</div>
-  </div>
+  <main>
+    <div v-for="ask in asks">{{ ask.title }}</div>
+  </main>
 </template>
 
 <script>
-import axios from "axios";
-
+import { fetchAskList } from "../api/index";
 export default {
+  components: {},
   data() {
     return {
-      user: [],
+      asks: [],
     };
   },
-  async fetch() {
-    const res = await axios.get("https://api.hnpwa.com/v0/show/1.json");
-    console.log(res);
-    this.user = res.data;
+  created() {
+    //axios는 프로미스 기반이다.
+    //화살표 안쓰면 let vm = this; 를 해야함
+    fetchAskList()
+      .then((response) => (this.asks = response.data))
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
+
+<style></style>
