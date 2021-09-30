@@ -2,7 +2,9 @@ import axios from "axios";
 //axios는 프로미스 기반이다.
 
 // 1. HTTP Request & Response와 관련된 기본 설정
-const config = { baseUrl: "https://api.hnpwa.com/v0/" };
+const config = {
+  baseUrl: "https://api.hnpwa.com/v0/",
+};
 
 //${} 안에는 변수이다
 // 2. API 함수들을 정리
