@@ -17,6 +17,6 @@ export const router = new VueRouter({
     { path: "/ask", component: AskView },
     { path: "/jobs", component: JobsView },
     { path: "/item", component: ItemView },
-    { path: "/user", component: UserView },
+    { path: "/user/:id", component: UserView },
   ],
 });
