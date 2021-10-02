@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: "history", //이걸 해줘야 주소에 #이 사라짐
   routes: [
-    //path = url주소, component 보여질것
+    // path = url주소, component 보여질것
     // { path: "/", redirect: "/news" },
     { path: "/news", component: NewsView },
     { path: "/ask", component: AskView },

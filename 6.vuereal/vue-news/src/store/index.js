@@ -5,7 +5,7 @@ import actions from "./actions";
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+export const store = new Vuewx.Store({
   state: {
     news: [],
     jobs: [],
@@ -18,6 +18,6 @@ export const store = new Vuex.Store({
       return state.asks;
     },
   },
-  mutations: mutations, //mutations만 적어도됨
+  mutations: mutations, // mutations만 적어도됨
   actions: actions,
 });
