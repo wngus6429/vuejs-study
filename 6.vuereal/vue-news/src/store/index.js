@@ -5,7 +5,7 @@ import actions from "./actions";
 
 Vue.use(Vuex);
 
-export const store = new Vuewx.Store({
+export const store = new Vuex.Store({
   state: {
     news: [],
     jobs: [],
