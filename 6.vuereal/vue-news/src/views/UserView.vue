@@ -22,9 +22,6 @@ export default {
     console.log(this.$route);
     const userName = this.$route.params.id;
     this.$store.dispatch("FETCH_USER", userName); //한개만 넘겨야해서 복수면 객체로
-    // console.log(this.$route.params);
-    // const userName = this.$route.params.id;
-    // axios.get(`https://api.hnpwa.com/v0/user/${userName}.json`);
   },
 };
 // Store 사용 안 했을 경우
