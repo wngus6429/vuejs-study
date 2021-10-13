@@ -18,6 +18,9 @@ export const store = new Vuex.Store({
     fetchedAsk(state) {
       return state.asks;
     },
+    fetchedItem(state) {
+      return state.item;
+    },
   },
   mutations: mutations, // mutations만 적어도됨
   actions: actions,
