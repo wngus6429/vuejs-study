@@ -25,6 +25,19 @@ body {
   padding: 0;
   margin: 0;
 }
+a {
+  /* a태그 달면 밑줄 생기는거 삭제 */
+  text-decoration: none;
+  color: #34495e;
+}
+a:hover {
+  color: #42b883;
+  text-decoration: underline;
+}
+/* 클릭해서 활성화 한거는 밑줄 효과 */
+a.router-link-exact-active {
+  text-decoration: underline;
+}
 /* 라우터 트랜지션, 부드러워지거나 여러효과 */
 /* <!-- https://vuejs.org/v2/guide/transitions.html --> */
 .page-enter-active,
