@@ -9,7 +9,7 @@
         <!-- 기타 정보 영역 -->
         <div>
           <p class="news-title">
-            <a v-bind:href="item.url">
+            <a :href="item.url">
               {{ item.title }}
             </a>
           </p>

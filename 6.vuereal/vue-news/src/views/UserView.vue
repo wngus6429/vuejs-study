@@ -21,7 +21,8 @@ export default {
   created() {
     console.log(this.$route);
     const userName = this.$route.params.id;
-    this.$store.dispatch("FETCH_USER", userName); //한개만 넘겨야해서 복수면 객체로
+    this.$store.dispatch("FETCH_USER", userName);
+    //한개만 넘겨야해서 복수면 객체로
   },
 };
 // Store 사용 안 했을 경우
@@ -35,4 +36,4 @@ export default {
 // };
 </script>
 
-<style></style>
+<style />
