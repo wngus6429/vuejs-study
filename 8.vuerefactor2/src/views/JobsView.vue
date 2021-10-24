@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <ListItem />
-  </div>
+  </main>
 </template>
 
 <script>
