@@ -1,24 +1,30 @@
 <template>
   <main>
     <section>
-      <!-- 질문 상세 정보 -->
-      <div class="user-container">
+      <!-- 사용자 정보 -->
+      <UserProfile :info="fetchedItem">
+        <div slot="username">{{ fetchedItem.user }}</div>
+        <template slot="time">{{ fetchedItem.time_ago }}</template>
+      </UserProfile>
+      <!-- <div class="user-container">
         <div>
           <i class="far fa-user"></i>
         </div>
         <div class="user-description">
           <!-- v-bind:to="`user/${fetchedItem.user}` -->
-          <!-- 이렇게 하면 주소가 http://localhost:8080/item/user/boppo1 이런식으로 나옴 -->
-          <!-- 앞에 item이 빠져야함 -->
-          <router-link v-bind:to="`/user/${fetchedItem.user}`">
+      <!-- 이렇게 하면 주소가 http://localhost:8080/item/user/boppo1 이런식으로 나옴 -->
+      <!-- 앞에 item이 빠져야함 -->
+      <!--<router-link v-bind:to="`/user/${fetchedItem.user}`">
             {{ fetchedItem.user }}
           </router-link>
           <div class="time">
             {{ fetchedItem.time_ago }}
           </div>
-        </div>
-        <!-- {{ this.$store.state.item.title }} -->
-      </div>
+        </div> -->
+      <!-- {{ this.$store.state.item.title }} -->
+      <!-- </div> -->
+    </section>
+    <section>
       <h2>{{ fetchedItem.title }}</h2>
     </section>
     <section>
@@ -36,7 +42,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+import UserProfile from "../components/UserProfile.vue";
 export default {
+  components: { UserProfile },
   computed: {
     ...mapGetters(["fetchedItem"]),
   },
