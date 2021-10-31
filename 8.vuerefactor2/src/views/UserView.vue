@@ -3,10 +3,11 @@
     <!-- <UserProfile /> -->
     <UserProfile :info="userInfo">
       <div slot="username">{{ userInfo.id }}</div>
-      <template slot="time">{{ userInfo.created }}</template>
-      <div slot="karma">{{ userInfo.karma }}</div>
-      <!-- 템플릿태그는 태그 없이 텍스트만 들어감 -->
+      <!-- <template slot="time">{{ userInfo.created }}</template> -->
+      <span slot="time">{{ "Joined " + userInfo.created }}, </span>
+      <span slot="karma">{{ userInfo.karma }}</span>
     </UserProfile>
+    <!-- 템플릿태그는 태그 없이 텍스트만 들어감 -->
     <!-- <p>name : {{ userInfo.id }}</p>
     <p>karma : {{ userInfo.karma }}</p>
     <p>created : {{ userInfo.created }}</p> -->
