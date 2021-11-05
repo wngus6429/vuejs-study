@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
     asks: [],
     user: {},
     item: {},
+    list: [],
   },
   getters: {
     //computed랑 동일속성
