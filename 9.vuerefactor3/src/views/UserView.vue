@@ -1,6 +1,5 @@
 <template>
   <main>
-    <!-- <UserProfile /> -->
     <UserProfile :info="userInfo">
       <div slot="username">{{ userInfo.id }}</div>
       <!-- <template slot="time">{{ userInfo.created }}</template> -->
