@@ -6,11 +6,15 @@
 
 <script>
 import ListItem from "../components/ListItem.vue";
+import bus from "../utils/bus.js";
 // import ListMixin from "../mixins/ListMixin.js";
-// import bus from "../utils/bus.js";
 export default {
   components: {
     ListItem,
+  },
+  mounted() {
+    // 인스턴스가 화면에 불러와서 나타났을떄 실행됨
+    bus.$emit("end:spinner");
   },
   // mixins: [ListMixin],
   // created() {
