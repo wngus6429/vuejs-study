@@ -1,0 +1,12 @@
+// 이 파일은 vscode 내부 기능을 활용하기 위한거임. vue를 위한게 아님
+// 절대경로 설정하기 밑에 exclude는 제외 하는 곳
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
