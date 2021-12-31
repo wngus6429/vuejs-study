@@ -46,3 +46,4 @@ app.use("/api", docs);
 
 // start
 app.listen(port, () => console.log(`${chalk.white.bgHex("#41b883").bold(`VUE TIL SERVER IS RUNNING ON ${port}`)}`));
+app.listen(console.log(`URL 접속하기 = http://localhost:3000/api/docs/`));
