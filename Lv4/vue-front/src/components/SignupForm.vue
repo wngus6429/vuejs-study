@@ -19,7 +19,7 @@
 
 <script>
 // 여기서 axios를 불러올수도 있으나 안함
-import { registerUser } from "@/api/index.js";
+import { registerUser } from "../api/index";
 export default {
   data() {
     return {
@@ -31,7 +31,12 @@ export default {
   methods: {
     submitForm() {
       console.log("확인");
-      registerUser();
+      const userData = {
+        username: this.username,
+        password: this.password,
+        nickname: this.nickname,
+      };
+      registerUser(userData);
     },
   },
 };
