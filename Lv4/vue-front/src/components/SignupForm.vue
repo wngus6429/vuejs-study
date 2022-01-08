@@ -12,31 +12,52 @@
       <label for="nickname">닉네임</label>
       <input id="nickname" type="text" v-model="nickname" />
     </div>
-    <button type="submit">로그인</button>
+    <button :disabled="!isUsernameValid || !password" type="submit">
+      회원가입
+    </button>
     <!-- submit누르면 위에 @submit이 반응한다 -->
+    <p>{{ logMessage }}</p>
   </form>
 </template>
 
 <script>
 // 여기서 axios를 불러올수도 있으나 안함
 import { registerUser } from "../api/index";
+import { validateEmail } from "@/utils/validation";
+
 export default {
   data() {
     return {
       username: "",
       password: "",
       nickname: "",
+      // log
+      logMessage: "",
     };
   },
+  computed: {
+    isUsernameValid() {
+      return validateEmail(this.username);
+    },
+  },
   methods: {
-    submitForm() {
+    async submitForm() {
       console.log("확인");
       const userData = {
         username: this.username,
         password: this.password,
         nickname: this.nickname,
       };
-      registerUser(userData);
+      // const response = await registerUser(userData);
+      const { data } = await registerUser(userData);
+      console.log(data.username);
+      this.logMessage = `${data.username}님이 가입 되었습니다`;
+      this.initForm();
+    },
+    initForm() {
+      this.username = ""; // null 도 가능
+      this.password = "";
+      this.nickname = "";
     },
   },
 };
