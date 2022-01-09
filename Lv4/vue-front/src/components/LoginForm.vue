@@ -1,17 +1,27 @@
 <template>
-  <form @submit.prevent="submitForm">
-    <div>
-      <label for="username">ID:</label>
-      <input id="username" type="text" v-model="username" />
+  <div class="contents">
+    <div class="form-wrapper form-wrapper-sm">
+      <form @submit.prevent="submitForm" class="form">
+        <div>
+          <label for="username">id:</label>
+          <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span class="warning" v-if="!isUsernameValid && username">
+              Please enter an email address
+            </span>
+          </p>
+        </div>
+        <div>
+          <label for="password">pw:</label>
+          <input id="password" type="text" v-model="password" />
+        </div>
+        <button :disabled="!isUsernameValid || !password" type="submit" class="btn">
+          로그인
+        </button>
+      </form>
+      <p class="log">{{ logMessage }}</p>
     </div>
-    <div>
-      <label for="password">PW:</label>
-      <input id="password" type="text" v-model="password" />
-    </div>
-    <button :disabled="!isUsernameValid || !password" type="submit">로그인</button>
-    <p>{{ logMessage }}</p>
-    <p>{{ logError }}</p>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -21,14 +31,13 @@ import { validateEmail } from "@/utils/validation";
 export default {
   data() {
     return {
+      // form values
       username: "",
       password: "",
-      //log
+      // log
       logMessage: "",
-      logError: "",
     };
   },
-  // 데이터변화에 따라서, 프롭스건, 데이터건, 스토어든 내용을 자동으로 계산
   computed: {
     isUsernameValid() {
       return validateEmail(this.username);
@@ -37,17 +46,23 @@ export default {
   methods: {
     async submitForm() {
       try {
-        const loginData = {
+        // 비즈니스 로직
+        const userData = {
           username: this.username,
           password: this.password,
         };
-        const response = await loginUser(loginData);
-        console.log(response);
-        this.logMessage = `${response.data.user.username}님 환영합니다`;
+        const { data } = await loginUser(userData);
+        // console.log(data.user.username);
+        // 메인페이지로 이동
+        // <router-link to=''></router-link>
+        this.$store.commit("setUsername", data.user.username);
+        this.$router.push("/main");
+        // this.logMessage = `${data.user.username} 님 환영합니다`;
         // this.initForm();
       } catch (error) {
+        // 에러 핸들링할 코드
         console.log(error.response.data);
-        this.logError = error.response.data;
+        this.logMessage = error.response.data;
         // this.initForm();
       } finally {
         this.initForm();
@@ -61,4 +76,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.btn {
+  color: white;
+}
+</style>
