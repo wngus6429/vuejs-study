@@ -15,11 +15,7 @@
           <label for="password">pw:</label>
           <input id="password" type="text" v-model="password" />
         </div>
-        <button
-          :disabled="!isUsernameValid || !password"
-          type="submit"
-          class="btn"
-        >
+        <button :disabled="!isUsernameValid || !password" type="submit" class="btn">
           로그인
         </button>
       </form>
@@ -29,17 +25,17 @@
 </template>
 
 <script>
-import { loginUser } from '@/api/index';
-import { validateEmail } from '@/utils/validation';
+import { loginUser } from "@/api/index";
+import { validateEmail } from "@/utils/validation";
 
 export default {
   data() {
     return {
       // form values
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       // log
-      logMessage: '',
+      logMessage: "",
     };
   },
   computed: {
@@ -56,9 +52,9 @@ export default {
           password: this.password,
         };
         const { data } = await loginUser(userData);
-        console.log(data.user.username);
-        this.$store.commit('setUsername', data.user.username);
-        this.$router.push('/main');
+        console.log(data.token);
+        this.$store.commit("setUsername", data.user.username);
+        this.$router.push("/main");
         // this.logMessage = `${data.user.username} 님 환영합니다`;
         // this.initForm();
       } catch (error) {
@@ -71,8 +67,8 @@ export default {
       }
     },
     initForm() {
-      this.username = '';
-      this.password = '';
+      this.username = "";
+      this.password = "";
     },
   },
 };
