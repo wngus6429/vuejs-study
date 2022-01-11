@@ -1,16 +1,15 @@
-import Vue from "vue";
-import vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(vuex);
+Vue.use(Vuex);
 
-export default new vuex.Store({
+export default new Vuex.Store({
   state: {
-    username: "",
+    username: '',
   },
-  //getters는 computed라고 생각
   getters: {
     isLogin(state) {
-      return state.username !== "";
+      return state.username !== '';
     },
   },
   mutations: {
@@ -18,7 +17,7 @@ export default new vuex.Store({
       state.username = username;
     },
     clearUsername(state) {
-      state.username = "";
+      state.username = '';
     },
   },
 });

@@ -22,17 +22,17 @@
 </template>
 
 <script>
-import { registerUser } from "@/api/index";
+import { registerUser } from '@/api/index';
 
 export default {
   data() {
     return {
       // form values
-      username: "",
-      password: "",
-      nickname: "",
+      username: '',
+      password: '',
+      nickname: '',
       // log
-      logMessage: "",
+      logMessage: '',
     };
   },
   methods: {
@@ -48,9 +48,9 @@ export default {
       this.initForm();
     },
     initForm() {
-      this.username = "";
-      this.password = "";
-      this.nickname = "";
+      this.username = '';
+      this.password = '';
+      this.nickname = '';
     },
   },
 };
