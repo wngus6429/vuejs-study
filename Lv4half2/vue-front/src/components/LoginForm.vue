@@ -27,7 +27,6 @@
 <script>
 import { loginUser } from "@/api/index";
 import { validateEmail } from "@/utils/validation";
-// import { saveAuthToCookie, saveUserToCookie } from "@/utils/cookies";
 
 export default {
   data() {
@@ -51,14 +50,11 @@ export default {
         const userData = {
           username: this.username,
           password: this.password,
-        }; //await 넣어서 로그인 끝나고 밑에 router실행
-        await this.$store.dispatch("LOGIN", userData);
-        // const { data } = await loginUser(userData);
-        // console.log(data.token);
-        // this.$store.commit("setToken", data.token);
-        // this.$store.commit("setUsername", data.user.username);
-        // saveAuthToCookie(data.token);
-        // saveUserToCookie(data.user.username);
+        };
+        const { data } = await loginUser(userData);
+        console.log(data.token);
+        this.$store.commit("setToken", data.token);
+        this.$store.commit("setUsername", data.user.username);
         this.$router.push("/main");
         // this.logMessage = `${data.user.username} 님 환영합니다`;
         // this.initForm();
