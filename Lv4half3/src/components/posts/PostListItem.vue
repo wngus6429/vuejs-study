@@ -1,15 +1,14 @@
 <template>
+  <!-- 스타일링은 common/css에 있다. -->
   <li>
     <div class="post-title">
       {{ postItem.title }}
     </div>
-    <div class="post-contents">
+    <div class="post-content">
       {{ postItem.contents }}
     </div>
     <div class="post-time">
       {{ postItem.createdAt }}
-      <i class="icon ion-md-create"></i>
-      <i class="icon ion-md-trash" @click="deleteItem"></i>
     </div>
   </li>
 </template>
@@ -21,9 +20,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  methods: {
-    deleteItem() {},
   },
 };
 </script>

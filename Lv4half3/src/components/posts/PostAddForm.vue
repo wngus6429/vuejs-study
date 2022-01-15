@@ -8,13 +8,10 @@
           <input id="title" type="text" v-model="title" />
         </div>
         <div>
-          <label for="contents">Contents:</label>
-          <textarea id="contents" type="text" rows="5" v-model="contents" />
-          <p
-            v-if="!isContentsValid"
-            class="validation-text warning isContentTooLong"
-          >
-            Contents length must be less than 250
+          <label for="content">Contents:</label>
+          <textarea id="content" type="text" rows="5" v-model="contents" />
+          <p v-if="!isContentsValid" class="validation-text warning">
+            Contents must be less than 200
           </p>
         </div>
         <button type="submit" class="btn">Create</button>
@@ -27,19 +24,18 @@
 </template>
 
 <script>
-import { createPost } from '@/api/posts';
-
+import { createPost } from "@/api/index";
 export default {
   data() {
     return {
-      title: '',
-      contents: '',
-      logMessage: '',
+      title: "",
+      contents: "",
+      logMessage: "",
     };
   },
   computed: {
     isContentsValid() {
-      return this.contents.length <= 200;
+      return this.contents.length < 200;
     },
   },
   methods: {
@@ -50,6 +46,7 @@ export default {
           contents: this.contents,
         });
         console.log(response);
+        this.$router.push("/main");
       } catch (error) {
         console.log(error.response.data.message);
         this.logMessage = error.response.data.message;
@@ -61,6 +58,7 @@ export default {
 
 <style scoped>
 .form-wrapper .form {
+  /* form-wrapper안에 .form이 있을 경우 */
   width: 100%;
 }
 .btn {

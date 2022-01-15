@@ -15,11 +15,7 @@
           <label for="password">pw:</label>
           <input id="password" type="text" v-model="password" />
         </div>
-        <button
-          :disabled="!isUsernameValid || !password"
-          type="submit"
-          class="btn"
-        >
+        <button :disabled="!isUsernameValid || !password" type="submit" class="btn">
           로그인
         </button>
       </form>
@@ -29,16 +25,18 @@
 </template>
 
 <script>
-import { validateEmail } from '@/utils/validation';
+// import { loginUser } from "@/api/index";
+import { validateEmail } from "@/utils/validation";
+// import { saveAuthToCookie, saveUserToCookie } from "@/utils/cookies";
 
 export default {
   data() {
     return {
       // form values
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       // log
-      logMessage: '',
+      logMessage: "",
     };
   },
   computed: {
@@ -53,20 +51,29 @@ export default {
         const userData = {
           username: this.username,
           password: this.password,
-        };
-        await this.$store.dispatch('LOGIN', userData);
-        this.$router.push('/main');
+        }; //await 넣어서 로그인 끝나고 밑에 router실행
+        await this.$store.dispatch("LOGIN", userData);
+        // const { data } = await loginUser(userData);
+        // console.log(data.token);
+        // this.$store.commit("setToken", data.token);
+        // this.$store.commit("setUsername", data.user.username);
+        // saveAuthToCookie(data.token);
+        // saveUserToCookie(data.user.username);
+        this.$router.push("/main");
+        // this.logMessage = `${data.user.username} 님 환영합니다`;
+        // this.initForm();
       } catch (error) {
         // 에러 핸들링할 코드
         console.log(error.response.data);
         this.logMessage = error.response.data;
+        // this.initForm();
       } finally {
         this.initForm();
       }
     },
     initForm() {
-      this.username = '';
-      this.password = '';
+      this.username = "";
+      this.password = "";
     },
   },
 };
