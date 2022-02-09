@@ -78,7 +78,7 @@ body {
 }
 input {
   border-style: groove;
-  width: 200px;
+  width: 300px;
 }
 button {
   border-style: groove;
