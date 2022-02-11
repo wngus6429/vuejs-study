@@ -25,23 +25,16 @@ export default {
   methods: {
     ...mapMutations({
       removeTodo: "removeOneItem",
+      toggleComplete: "toggleOneItem",
       //removeTodo를 누르면 removeOneItem이 호출이 되겠지
       //뒤에 인자 {todoItem, index}는 'removeOneItem'안에 자동으로 들어가 있음
       //대신에 인자가 2개이니까 하나로 넘겨줘야 해서 위에 객체 처리
-      toggleComplete: "toggleOneItem",
     }),
-    // removeTodo(todoItem, index) {
-    //   //const obj = {todoItem, index} 이렇게 해서 밑에 obj 넣어도됨
-    //   this.$store.commit("removeOneItem", { todoItem, index });
-    // },
-    // toggleComplete(todoItem, index) {
-    //   this.$store.commit("toggleOneItem", { todoItem, index });
-    // },
   },
   computed: {
     ...mapGetters(["storedTodoItems"]),
     // todoItems() {
-    //   return this.$store.getters.storedTodoItems;
+    // return this.$store.getters.storedTodoItems;
   },
 };
 </script>

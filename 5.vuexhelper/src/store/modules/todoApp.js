@@ -25,7 +25,6 @@ const mutations = {
     let obj = { compledted: false, item: todoItem };
     localStorage.setItem(todoItem, JSON.stringify(obj)); //객체를 string으로 변환해줌
     state.todoItems.push(obj); //위에 부분은 local저장, 여기는 화면에 반영
-    console.log(state);
   },
 
   removeOneItem(state, payload) {
@@ -50,5 +49,4 @@ const mutations = {
 };
 
 export default { state, getters, mutations };
-
 //default는 한개만 추출될수 있는걸 의미함

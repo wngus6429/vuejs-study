@@ -7,15 +7,17 @@ const storage = {
     const arr = [];
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") 
-        { arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))));}
+        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
+          arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
       }
     }
     return arr;
-  },};
+  },
+};
 //export 를 해서 store를 다운데서 접근 할수 있게 한거임.
 export const store = new Vuex.Store({
-  state: { todoItems: storage.fetch(),},
+  state: { todoItems: storage.fetch() },
   mutations: {
     addOneItem(state, todoItem) {
       let obj = { compledted: false, item: todoItem };
@@ -29,7 +31,7 @@ export const store = new Vuex.Store({
     },
     toggleOneItem(state, payload) {
       console.log(state, payload);
-      //todoItem.compledted = !todoItem.compledted;
+      // todoItem.compledted = !todoItem.compledted;
       state.todoItems[payload.index].compledted = !state.todoItems[payload.index].compledted;
       //localstorage.update 갱신 같은게 없어서 이렇게 하는거임
       localStorage.removeItem(payload.todoItem.item);
