@@ -3,7 +3,11 @@ import { fetchNewsList, fetchJobs, fetchAskList, fetchUserInfo, fetchCommentItem
 export default {
   FETCH_NEWS(context) {
     fetchNewsList()
-      .then((response) => context.commit("SET_NEWS", response.data))
+      .then((response) => {
+        console.log(context.state.news);
+        console.log(response);
+        context.commit("SET_NEWS", response.data)
+      })
       //state.new = response data 안됨 ㅋㅋ 뮤테이션 써야함
       .catch((error) => {
         console.log(error);
