@@ -1,5 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const storage = {
@@ -7,7 +7,7 @@ const storage = {
     const arr = [];
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
+        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
           arr.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
         }
       }
@@ -20,11 +20,13 @@ export const store = new Vuex.Store({
   state: { todoItems: storage.fetch() },
   mutations: {
     addOneItem(state, todoItem) {
+      console.log('스텟', state);
       let obj = { compledted: false, item: todoItem };
       localStorage.setItem(todoItem, JSON.stringify(obj)); //객체를 string으로 변환해줌
       state.todoItems.push(obj); //위에 부분은 local저장, 여기는 화면에 반영
     },
     removeOneItem(state, payload) {
+      console.log(payload);
       localStorage.removeItem(payload.todoItem.item);
       state.todoItems.splice(payload.index, 1);
       //splice원본 변화 있음, slice는 자르고 반환하지만 원본은 변화 없음

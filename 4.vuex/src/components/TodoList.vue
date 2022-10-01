@@ -4,8 +4,11 @@
       <!-- v-for는 인덱스 활용가능 -->
       <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow">
         <!-- compledted가 false면 v-bind:class="{ checkBtnCompleted: todoItem.compledted }" 부분이 사라짐 -->
-        <i class="checkBtn fas fa-check" v-bind:class="{ checkBtnCompleted: todoItem.compledted }" 
-          v-on:click="toggleComplete(todoItem, index)"></i>
+        <i
+          class="checkBtn fas fa-check"
+          v-bind:class="{ checkBtnCompleted: todoItem.compledted }"
+          v-on:click="toggleComplete(todoItem, index)"
+        ></i>
         <!-- v-bind의 클래스, 동적인 값을 부여, compledted가 true면 체크 회색, 가운데선 나타나게끔 -->
         <span v-bind:class="{ textCompleted: todoItem.compledted }">{{ todoItem.item }}</span>
         <span class="removeBtn" v-on:click="removeTodo(todoItem, index)"><i class="fas fa-trash-alt"></i></span>
@@ -21,10 +24,10 @@ export default {
     //this.$store.commit("addOneItem", this.newTodoItem);
     removeTodo(todoItem, index) {
       //const obj = {todoItem, index} 이렇게 해서 밑에 obj 넣어도됨
-      this.$store.commit("removeOneItem", { todoItem, index });
+      this.$store.commit('removeOneItem', { todoItem, index });
     },
     toggleComplete(todoItem, index) {
-      this.$store.commit("toggleOneItem", { todoItem, index });
+      this.$store.commit('toggleOneItem', { todoItem, index });
     },
   },
 };
